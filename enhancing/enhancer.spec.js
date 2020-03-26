@@ -88,3 +88,34 @@ describe('repair function', () => {
         expect(enhancer.repair(item)).toStrictEqual(itemOutput);
     });
 });
+
+describe("enhancer.get()", () => {
+    it("doesn't change the item if the enhancement level is zero", () => {
+        const expectedItem = {
+            name: "item",
+            enhancement: 0,
+            durability: 100
+        }
+        const inputItem = {
+            name: "item",
+            enhancement: 0,
+            durability: 100
+        }
+        const outputItem = enhancer.get(inputItem)
+        expect(outputItem).toStrictEqual(expectedItem)
+    })
+    it("changes item name to reflect item enhancement", () => {
+        const expectedItem = {
+            name: "[10] item",
+            enhancement: 10,
+            durability: 100
+        }
+        const inputItem = {
+            name: "item",
+            enhancement: 10,
+            durability: 100
+        }
+        const outputItem = enhancer.get(inputItem)
+        expect(outputItem).toStrictEqual(expectedItem)
+    })
+})
